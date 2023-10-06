@@ -78,6 +78,67 @@ exit
 bench --site excel.localhost migrate
 ```
 
+**STEP 2**
+**How to start RMA Server**
+Go to main terminal:
+```
+git clone https://gitlab.com/castlecraft/excel-rma
+```
+```
+code excel-rma
+```
+**
+Copy here Dump file
+**
+```
+cp -fR /path/to/dump restore/dump
+
+```
+**Restore MongoDB Dump**
+```
+mongorestore -u rma-server -p admin -h mongodb --authenticationDatabase=rma-server --db rma-server ./restore/dump/rma-server
+```
+
+**Reopen in devcontainer**
+```
+cd packages/rma-server
+cp env-devcontainer .env
+```
+**Next, let's run our server.**
+```
+yarn
+yarn start:debug
+```
+**See Your site here**
+```
+http://rma.localhost:4700/home
+```
+
+What about frontend(s)?
+This app has 2 frontends
+
+packages/rma-frontend
+packages/rma-warranty
+
+**How to start rma-frontend?**
+```
+cd packages/rma-frontend
+yarn
+yarn start
+```
+**How to start rma-warranty?**
+```
+cd packages/rma-warranty
+yarn
+yarn start
+```
+
+
+
+
+
+
+
 
 
 
