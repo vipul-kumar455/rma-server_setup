@@ -35,6 +35,16 @@ wget https://gitlab.com/castlecraft/excel-rma/-/wikis/uploads/489583f9bf1adc8258
 ```
 cd frappe-bench
 ```
+**Install app these apps on excel.localhost**
+```
+bench --site excel.localhost install-app education
+bench --site excel.localhost install-app healthcare
+bench --site excel.localhost install-app hospitality
+bench --site excel.localhost install-app agriculture
+bench --site excel.localhost install-app hrms
+bench --site excel.localhost install-app excel
+bench --site excel.localhost install-app whitelabel
+```
 ```
 bench --site excel.localhost restore --force /workspace/development/20211024_150000-site_name_com-database.sql.gz
 ```
