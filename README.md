@@ -55,6 +55,8 @@ bench --site excel.localhost set-admin-password admin
 bench --site excel.localhost console
 ```
 **In python console:**
+
+Note- replce example with excelbd(a = frappe.get_doc("User", "bot@excelbd.com")
 ```
 a = frappe.get_doc("User", "bot@example.com")
 a.api_key = "6b045a3f08fe3f0"
@@ -65,8 +67,8 @@ frappe.db.commit()
 ```
 for o in frappe.get_all("OAuth Client"):
    oc = frappe.get_doc("OAuth Client", o.get("name"))
-   oc.redirect_uris = oc.redirect_uris.replace("https://testrma.example.com", "http://rma.localhost:4700")
-   oc.default_redirect_uri = oc.default_redirect_uri.replace("https://testrma.example.com", "http://rma.localhost:4700")
+   oc.redirect_uris = oc.redirect_uris.replace("https://testrma.excelbd.com", "http://rma.localhost:4700")
+   oc.default_redirect_uri = oc.default_redirect_uri.replace("https://testrma.excelbd.com", "http://rma.localhost:4700")
    if oc.grant_type == "Implicit":
      oc.grant_type = "Authorization Code"
      oc.response_type = "Code"
@@ -76,7 +78,7 @@ for o in frappe.get_all("OAuth Client"):
 ```
 for w in frappe.get_all("Webhook", filters={"webhook_doctype": ["not in", "Data Import Legacy"]}):
    webhook = frappe.get_doc("Webhook", w.get("name"))
-   webhook.request_url = webhook.request_url.replace("https://testrma.example.com", "http://rma.localhost:4700")
+   webhook.request_url = webhook.request_url.replace("https://testrma.excelbd.com", "http://rma.localhost:4700")
    webhook.save()
    frappe.db.commit()
 
@@ -107,9 +109,11 @@ cp -fR /path/to/dump restore/dump
 
 ```
 **Restore MongoDB Dump**
+Note- First goto (cd restore)
 ```
 mongorestore -u rma-server -p admin -h mongodb --authenticationDatabase=rma-server --db rma-server ./restore/dump/rma-server
 ```
+example: mongorestore -u rma-server -p admin -h mongodb --authenticationDatabase=rma-server --db rma-server ./new-dump-28-9-23/rma-server
 
 **Reopen in devcontainer**
 ```
